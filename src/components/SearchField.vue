@@ -8,7 +8,7 @@
             type="text"
             placeholder="Search"
             :value="modelValue"
-            @input="$emit('update:modelValue', handleInput)"
+            @input="$emit('update:modelValue', handleInput($event))"
         />
         <SearchIcon class="h-8 w-8 text-white"/>
     </div>
