@@ -26,7 +26,7 @@ export default defineComponent({
         modelValue: String,
     },
     methods: {
-        handleInput (event: Event) {
+        handleInput: (event: Event) => {
             return (event.target as HTMLInputElement).value
         }
     }
