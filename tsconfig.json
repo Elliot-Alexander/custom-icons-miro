@@ -1,4 +1,19 @@
 {
+//  "compilerOptions": {
+
+//  },
+//  "include": ["src", "typings"],
+//  "exclude": ["node_modules"],
+//  "files": [],
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "include": [
+    "env.d.ts",
+    "src/**/*",
+    "src/**/*.vue",
+    "typings/miro.d.ts",
+    "typings/client.d.ts",
+  ],
+  "exclude": ["src/**/__tests__/*", "node_modules"],
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
@@ -14,17 +29,16 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "include": ["src", "typings"],
-  "exclude": ["node_modules"],
-  "files": [],
   "references": [
     {
       "path": "./tsconfig.vite-config.json"
-    },
-    {
-      "path": "./tsconfig.app.json"
     },
     {
       "path": "./tsconfig.vitest.json"

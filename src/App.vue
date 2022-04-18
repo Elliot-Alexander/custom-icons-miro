@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import SearchField from '@/components/SearchField.vue'
 import IconWrapper from '@/components/IconWrapper.vue'
 

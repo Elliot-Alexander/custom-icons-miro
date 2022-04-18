@@ -8,7 +8,7 @@
             type="text"
             placeholder="Search"
             :value="modelValue"
-            @input="$emit('update:modelValue', $event.target.value)"
+            @input="$emit('update:modelValue', handleInput)"
         />
         <SearchIcon class="h-8 w-8 text-white"/>
     </div>
@@ -25,6 +25,11 @@ export default defineComponent({
     props: {
         modelValue: String,
     },
+    methods: {
+        handleInput (event: Event) {
+            return (event.target as HTMLInputElement).value
+        }
+    }
 })
 
 

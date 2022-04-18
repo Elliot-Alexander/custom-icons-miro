@@ -25,13 +25,14 @@ type IconInfo = {
 let iconUrls = ref([] as IconInfo[])
 
 let availableIcons;
-
+// @ts-ignore
 axios.get(import.meta.env.VITE_BUCKET_URL + '?max-keys=8000')
     .then(res => {
         const xmlParser = new DOMParser()
         const xmlDoc = xmlParser.parseFromString(res.data as string, 'text/xml')
         availableIcons = xmlDoc.querySelectorAll('Contents Key')
         availableIcons.forEach(iconPath => {
+            // @ts-ignore
             const assetPath = new URL(iconPath.textContent as string, import.meta.env.VITE_BUCKET_URL).href
             let iconName: string = ''
             assetPath?.split('/').pop()?.split('.')?.shift()?.split('-').forEach(
@@ -81,12 +82,12 @@ function bootstrap() {
     let currentImageUrl: string | null
     const imageOptions = {
         draggableItemSelector: 'img',
-        onClick: async (targetElement) => {
+        onClick: async (targetElement: HTMLElement) => {
             const url = targetElement.getAttribute('data-image-url')
             const widget = (await createShape(0, 0, url))[0]
             miro.board.viewport.zoomToObject(widget)
         },
-        getDraggableItemPreview: (targetElement) => {
+        getDraggableItemPreview: (targetElement: HTMLElement) => {
             //drag-started
             currentImageUrl = targetElement.getAttribute('data-image-url')
             console.log(currentImageUrl)
@@ -96,12 +97,13 @@ function bootstrap() {
                 url: currentImageUrl,
             }
         },
-        onDrop: (canvasX, canvasY) => {
+        onDrop: (canvasX: number, canvasY: number) => {
             console.log('onDrop 1')
             createShape(canvasX, canvasY, currentImageUrl)
         },
     }
-    miro.board.ui.initDraggableItemsContainer(container, imageOptions)
+    // @ts-ignore
+    miro.board.ui.initDraggableItemsContainer(container as HTMLElement, imageOptions)
 }
 
 onMounted(() => {
