@@ -8,6 +8,7 @@
             type="text"
             placeholder="Search"
             :value="modelValue"
+            autofocus
             @input="$emit('update:modelValue', handleInput($event))"
         />
         <SearchIcon class="h-8 w-8 text-white"/>
